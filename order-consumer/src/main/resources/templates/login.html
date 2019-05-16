@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script th:src="@{/js/easyui1.5/jquery.min.js}"></script>
+<script th:src="@{/js/bootstrap3/js/bootstrap.js}"></script>
+<link rel="stylesheet" th:href="@{/js/bootstrap3/css/bootstrap.css}">
+
+<script th:src="@{/js/bootstrap-bootbox/bootbox.js}"></script>
+<script th:src="@{/js/bootbox/bootbox.all.min.js}"></script>
+<script th:src="@{/js/bootStrap-addTabs/bootstrap.addtabs.min.js}"></script>
+
+<link rel="stylesheet" th:href="@{/js/bootStrap-addTabs/bootstrap.addtabs.css}">
+<link rel="stylesheet" th:href="@{/js/bootstrap-treeview/bootstrap-treeview.min.css}">
+
+<script th:src="@{/js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js}"></script>
+<script th:src="@{/js/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js}"></script>
+<link rel="stylesheet" th:href="@{/js/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css}">
+<script th:src="@{/js/bootstrap-table/bootstrap-table.js}"></script>
+<link rel="stylesheet" th:href="@{/js/bootstrap-table/bootstrap-table.css}">
+<script th:src="@{/js/bootstrap-table/locale/bootstrap-table-zh-CN.js}"></script>
+<!--<script th:src="@{/js/regl.min.js}"></script>
+
+<script  th:src="@{/js/index.js}"></script>-->
+<style type="text/css">
+    body{background: url() no-repeat;background-size:cover;font-size: 16px;}
+    .form{background: rgba(255,255,255,0.2);width:400px;margin:100px auto;}
+
+</style>
+<!--
+<embed src="http://wanghaonan.oss-cn-beijing.aliyuncs.com/tupian/Armin%20Van%20Buuren%E3%80%81trevor%20Guthrie%20-%20This%20Is%20What%20It%20Feels%20Like.mp3" width="333" height="333" autostart="true" loop="true" hidden="true"></embed>
+-->
+
+<div class="container">
+
+    <div class="form row">
+
+            <h3 class="form-title">Login to your account</h3>
+            <div class="col-sm-9 col-md-9">
+                <div class="form-group">
+                    <i class="fa fa-user fa-lg"></i>
+                    <input class="form-control required" type="text" placeholder="loginnumber"  id="loginnumber" autofocus="autofocus" maxlength="20"/>
+                </div>
+                <div class="form-group">
+                    <i class="fa fa-lock fa-lg"></i>
+                    <input class="form-control required" type="password" placeholder="password"  id="password" maxlength="8"/>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox">
+                        <input type="checkbox" name="remember" value="1"/> Remember me
+                    </label>
+                    <hr />
+
+                    <a href="javascript:reg();" id="register_btn" class="">Create an account</a>
+
+
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success pull-right" onclick="login()" value="Login "/>
+                </div>
+            </div>
+
+    </div>
+
+</body>
+
+<script type="text/javascript"  th:inline="none">
+   function login(){
+
+        var loginnumber = $("#loginnumber").val();
+
+
+        var password = $("#password").val();
+        $.ajax({
+            url:'../login',
+            type:'post',
+            data:{
+                loginnumber:loginnumber,
+                password:password
+            },
+            success:function(data){
+
+                if (data.code != 0) {
+                alert(data.msg);
+                }else{
+                    window.location.href="../page/tomain";
+                }
+            }
+        })
+    }
+
+function reg() {
+    window.location.href="../page/toreg";
+    };
+
+</script>
+
+</html>
